@@ -1,4 +1,5 @@
-const { makeObservable, observable, computed, action, autorun } = require('mobx')
+import { makeObservable, observable, computed, action, autorun } from 'mobx'
+
 class ObservableTodoStore {
   todos = [];
   pendingRequests = 0;
@@ -37,4 +38,4 @@ class ObservableTodoStore {
   }
 }
 
-module.exports = ObservableTodoStore;
+export default ObservableTodoStore
