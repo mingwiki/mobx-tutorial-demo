@@ -1,13 +1,20 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import ObservableTodoStore from './store';
+import { observable, action } from 'mobx'
 import { observer } from "mobx-react-lite";
 // import RenderCounter from 'react-render-counter';
 
 const observableTodoStore = new ObservableTodoStore();
+
 const TodoList = observer(({ store }) => {
   const onNewTodo = () => {
-    store.addTodo(prompt('Enter a new todo:', 'coffee plz'));
+    // store.addTodo(prompt('Enter a new todo:', 'coffee plz'));
+    store.pendingRequests++;
+    setTimeout(action(() => {
+      store.addTodo('Random Todo ' + Math.random());
+      store.pendingRequests--;
+    }), 100);
   }
 
   return (
