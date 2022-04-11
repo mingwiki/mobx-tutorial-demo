@@ -1,18 +1,10 @@
-const TodoStore = require('./store')
+const ObservableTodoStore = require('./store')
 
-const todoStore = new TodoStore();
+const observableTodoStore = new ObservableTodoStore();
 
-todoStore.addTodo("read MobX tutorial");
-console.log(todoStore.report());
-
-todoStore.addTodo("try MobX");
-console.log(todoStore.report());
-
-todoStore.todos[0].completed = true;
-console.log(todoStore.report());
-
-todoStore.todos[1].task = "try MobX in own project";
-console.log(todoStore.report());
-
-todoStore.todos[0].task = "grok MobX tutorial";
-console.log(todoStore.report());
+observableTodoStore.addTodo("read MobX tutorial");
+observableTodoStore.addTodo("try MobX");
+observableTodoStore.todos[0].completed = true;
+observableTodoStore.todos[1].task = "try MobX in own project";
+observableTodoStore.todos[0].task = "grok MobX tutorial";
+// console.log(observableTodoStore.todos[0].task)

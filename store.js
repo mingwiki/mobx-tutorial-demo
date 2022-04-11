@@ -1,5 +1,18 @@
-class TodoStore {
+const { makeObservable, observable, computed, action, autorun } = require('mobx')
+class ObservableTodoStore {
   todos = [];
+  pendingRequests = 0;
+
+  constructor() {
+    makeObservable(this, {
+      todos: observable,
+      pendingRequests: observable,
+      completedTodosCount: computed,
+      report: computed,
+      addTodo: action,
+    });
+    autorun(() => console.log(this.report));
+  }
 
   get completedTodosCount() {
     return this.todos.filter(
@@ -7,7 +20,7 @@ class TodoStore {
     ).length;
   }
 
-  report() {
+  get report() {
     if (this.todos.length === 0)
       return "<none>";
     const nextTodo = this.todos.find(todo => todo.completed === false);
@@ -24,4 +37,4 @@ class TodoStore {
   }
 }
 
-module.exports = TodoStore
+module.exports = ObservableTodoStore;
